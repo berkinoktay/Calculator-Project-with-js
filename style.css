@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    outline: 0;
+    border:0;
+}
+html{
+    font-size: 10px;
+}
+body{
+    background: #393E46;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    font-family: 'Roboto',sans-serif;
+}
+h2{
+    margin-bottom: 30px;
+    color: #fff;
+    font-size: 4rem;
+}
+.calc-container{
+    width: 500px;
+    border:2px solid #cecece;
+    border-radius: 5px;
+   height: auto;
+   position: relative;
+}
+.first-value{
+position: absolute;
+top: 0;
+left: 0;
+color: #ccc;
+padding: 1rem;
+font-size: 1.6rem;
+}
+.calc-input{
+    width: 100%;
+    height: 70px;
+    background: #252A34;
+    color: #fff;
+    font-size: 4rem;
+    text-align: right;
+    padding: 60px 20px 30px 20px;
+}
+.calc-keys{
+    background: #fff;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    padding: 10px;
+}
+button{
+    height: 50px;
+    background: #fff;
+    border:1px solid #cecece;
+    border-radius: 3px;
+    color: #0a0a0a;
+    font-size: 3rem;
+    cursor: pointer;
+}
+button:hover{
+background: #EEEEEE;
+transition: all 0.1s ease-in;
+}
+button:active{
+    transform: scale(0.95);
+}
+.operator{
+    color: #3F72AF;
+}
+.equal-sign{
+    grid-area: 2/4/6/5;
+    height: 100%;
+    background: #3F72AF;
+    color: #fff;
+}
+.equal-sign:hover{
+    background: #3F72AF;
+    transition: all 0.1s ease-in;
+}
+.clear{
+    background: #E84545;
+    color: #fff;
+}
+.clear:hover{
+    background: #b63838;
+    transition: all 0.1s ease-in;
+}
