@@ -31,7 +31,7 @@ calcKeys.addEventListener('click', function (e) {
 
                 firstValue = String(firstValue).includes('.') ? String(firstValue).replace('.', ',') : firstValue
                 const result = calculate(secondValue, defaultValue, operatorValue)
-                calcInput.value = Number.isInteger(result) ? result : result
+                calcInput.value = Number.isInteger(result) ? result : result.toFixed(2)
                 secondValue = result
                 // defaultValue = String(defaultValue).includes(',') ? defaultValue.replace(/,/g, '.') : defaultValue
                 firstValueContainer.innerText = `${firstValue} ${operatorValue === null ? '' : operatorValue} ${defaultValue} =`
