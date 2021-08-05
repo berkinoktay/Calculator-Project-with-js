@@ -6,7 +6,6 @@ let defaultValue = 0
 let secondValue = null
 let operatorValue = null
 let waitingSecondValue = null
-
 updateValue()
 
 function updateValue() {
@@ -29,19 +28,19 @@ calcKeys.addEventListener('click', function (e) {
                 alert('Bir sayı veya operatör eksik girilmiştir! Lütfen kontrol ediniz.')
             } else {
                 firstValue = secondValue
-                const result = calculate(secondValue, parseFloat(defaultValue), operatorValue)
-                calcInput.value = Number.isInteger(result) ? result : result.toFixed(3)
+
+                firstValue = String(firstValue).includes('.') ? String(firstValue).replace('.', ',') : firstValue
+                const result = calculate(secondValue, defaultValue, operatorValue)
+                calcInput.value = Number.isInteger(result) ? result : result
                 secondValue = result
-
-                firstValueContainer.innerText = `= ${firstValue} ${operatorValue === null ? '' : operatorValue} ${defaultValue}`
-
-                // console.log(`Default: ${defaultValue}, Second: ${secondValue}, Operator: ${operatorValue}, WaitingSecond: ${waitingSecondValue}`)
+                // defaultValue = String(defaultValue).includes(',') ? defaultValue.replace(/,/g, '.') : defaultValue
+                firstValueContainer.innerText = `${firstValue} ${operatorValue === null ? '' : operatorValue} ${defaultValue} =`
+                // console.log(`SONRA Default: ${defaultValue}, Second: ${secondValue}, Operator: ${operatorValue}, WaitingSecond: ${waitingSecondValue}`)
             }
 
         } else {
             numInput(e.target.value)
             updateValue()
-            // console.log(`Default: ${defaultValue}, Second: ${secondValue}, Operator: ${operatorValue}, WaitingSecond: ${waitingSecondValue}`)
         }
     }
 
@@ -61,42 +60,61 @@ function numInput(number) {
     } else {
         defaultValue = defaultValue === 0 ? number : defaultValue + number
     }
-    firstValueContainer.innerText = `= ${secondValue === null ? defaultValue : secondValue} ${operatorValue === null ? '' : operatorValue} ${secondValue === null ? '' : defaultValue}`
+    firstValueContainer.innerText = `${secondValue === null ? defaultValue : secondValue} ${operatorValue === null ? '' : operatorValue} ${secondValue === null ? '' : defaultValue} =`
 }
 function decInput() {
     if (defaultValue === 0) {
         alert('Ondalıklı sayıya çevirmeden önce lütfen bir sayı giriniz!')
-    } else if (!defaultValue.includes('.')) {
-        defaultValue += '.'
+    } else if (!defaultValue.includes(',')) {
+        defaultValue += ','
     }
 
 }
 function opInput(operator) {
     if (secondValue === null) {
-        secondValue = parseFloat(defaultValue)
 
+        // secondValue = parseFloat(defaultValue)
+        secondValue = Number.isInteger(defaultValue) ? parseInt(defaultValue) : defaultValue
+
+        firstValueContainer.innerText = `${secondValue} ${operator} =`
     }
     waitingSecondValue = true
     operatorValue = operator
-    defaultValue = 0
+    defaultValue = secondValue
 
 }
 function calculate(second, defaultVal, operator) {
+    // let convertDecSecond = null
+    // let convertDecDefault = null
+    // if (String(second).includes(',')) {
+    //     convertDecSecond = second.replace(',', '.')
+    // }
+    // else {
+    //     convertDecSecond = second
+    // }
+    // if (String(defaultVal.includes(',')) {
+    //     convertDecDefault = defaultVal.replace(',', '.')
+    // }
+    // else {
+    //     convertDecDefault = defaultVal
+    // }
+    const convertDecSecond = String(second).includes(',') ? second.replace(/,/g, '.') : second
+    const convertDecDefault = String(defaultVal).includes(',') ? defaultVal.replace(/,/g, '.') : defaultVal
     switch (operator) {
         case "+":
-            return second + defaultVal
+            return parseFloat(convertDecSecond) + parseFloat(convertDecDefault)
             break;
         case "-":
-            return second - defaultVal
+            return parseFloat(convertDecSecond) - parseFloat(convertDecDefault)
             break;
         case "*":
-            return second * defaultVal
+            return parseFloat(convertDecSecond) * parseFloat(convertDecDefault)
             break;
         case "/":
-            return second / defaultVal
+            return parseFloat(convertDecSecond) / parseFloat(convertDecDefault)
             break;
         default:
-            return defaultVal
+            return parseFloat(convertDecDefault)
 
     }
 

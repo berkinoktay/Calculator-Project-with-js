@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap');
 *{
     margin:0;
     padding:0;
@@ -10,31 +10,34 @@ html{
     font-size: 10px;
 }
 body{
-    background: #393E46;
+    background: #3D5A80;
     font-size: 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     flex-direction: column;
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    font-variant-numeric: slashed-zero;
 }
 h2{
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     color: #fff;
-    font-size: 4rem;
+    font-size: 3rem;
 }
 .calc-container{
-    width: 500px;
-    border:2px solid #cecece;
+    width: 450px;
     border-radius: 5px;
    height: auto;
-   position: relative;
+   
+}
+.input-container{
+    position: relative;
 }
 .first-value{
 position: absolute;
 top: 0;
-left: 0;
+right: 0;
 color: #ccc;
 padding: 1rem;
 font-size: 1.6rem;
@@ -42,53 +45,68 @@ font-size: 1.6rem;
 .calc-input{
     width: 100%;
     height: 70px;
-    background: #252A34;
+    background: #293241;
     color: #fff;
-    font-size: 4rem;
+    font-size: 5rem;
     text-align: right;
     padding: 60px 20px 30px 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
 }
 .calc-keys{
-    background: #fff;
+    background: #293E56;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    padding: 10px;
+    grid-gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
 }
 button{
     height: 50px;
-    background: #fff;
-    border:1px solid #cecece;
+    background: #E9ECEF;
     border-radius: 3px;
     color: #0a0a0a;
-    font-size: 3rem;
+    font-size: 3.5rem;
     cursor: pointer;
+    box-shadow: 0 5px #8D959D;
+    
 }
 button:hover{
-background: #EEEEEE;
+background: #c3c9ce;
 transition: all 0.1s ease-in;
 }
 button:active{
-    transform: scale(0.95);
+    box-shadow: 0 1px #adb5bd;
+    transform: translateY(4px);
 }
 .operator{
-    color: #3F72AF;
+    color: #375274;
 }
 .equal-sign{
     grid-area: 2/4/6/5;
     height: 100%;
-    background: #3F72AF;
+    background: #EA481F;
+    box-shadow: 0 5px #A82E10;
     color: #fff;
 }
 .equal-sign:hover{
-    background: #3F72AF;
+    background: #CD3813;
     transition: all 0.1s ease-in;
 }
+.equal-sign:active{
+    box-shadow: 0 1px #A82E10;
+    transform: translateY(4px);
+}
 .clear{
-    background: #E84545;
+    background: #9b2226;
     color: #fff;
+    box-shadow: 0 5px #6e191c;
 }
 .clear:hover{
     background: #b63838;
     transition: all 0.1s ease-in;
+}
+.clear:active{
+    box-shadow: 0 1px #6e191c;
+    transform: translateY(4px);
 }
