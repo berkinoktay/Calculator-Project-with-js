@@ -9,6 +9,7 @@
 html{
     font-size: 10px;
 }
+
 body{
     background: #3D5A80;
     font-size: 1.2rem;
@@ -57,11 +58,11 @@ font-size: 1.6rem;
     background: #293E56;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
+    grid-gap: 15px;
     padding: 20px;
     border-radius: 10px;
 }
-button{
+.calc-keys button{
     height: 50px;
     background: #E9ECEF;
     border-radius: 3px;
@@ -71,50 +72,124 @@ button{
     box-shadow: 0 5px #8D959D;
     
 }
-button:hover{
+.calc-keys button:hover{
 background: #c3c9ce;
 transition: all 0.1s ease-in;
 }
-button:active{
+.calc-keys button:active{
     box-shadow: 0 1px #adb5bd;
     transform: translateY(4px);
 }
-.operator{
+.calc-keys .operator{
     color: #375274;
+    font-size: 4rem;
 }
-.equal-sign{
-    grid-area: 2/4/6/5;
+.calc-keys .equal-sign{
+    grid-area: 3/4/6/5;
     height: 100%;
     background: #EA481F;
     box-shadow: 0 5px #A82E10;
     color: #fff;
 }
-.equal-sign:hover{
+.calc-keys .equal-sign:hover{
     background: #CD3813;
     transition: all 0.1s ease-in;
 }
-.equal-sign:active{
+.calc-keys .equal-sign:active{
     box-shadow: 0 1px #A82E10;
     transform: translateY(4px);
 }
-.clear{
+.calc-keys .clear{
     background: #9b2226;
     color: #fff;
     box-shadow: 0 5px #6e191c;
+    font-size: 2rem;
 }
-.clear:hover{
-    background: #b63838;
+.calc-keys .delete{
+    background: #ce3340;
+    color: #fff;
+    box-shadow: 0 5px #91232c;
+    font-size: 2.5rem;
+    position: relative;
+}
+.calc-keys .delete::before{
+    font-family: "Font Awesome 5 Free";
+   content: '\f55a';
+    font-weight: 900;
+}
+.calc-keys .delete:hover{
+    background: #b92f3a;
     transition: all 0.1s ease-in;
 }
-.clear:active{
+.calc-keys .clear:hover{
+    background: #9e3333;
+    transition: all 0.1s ease-in;
+}
+.calc-keys .clear:active{
     box-shadow: 0 1px #6e191c;
     transform: translateY(4px);
 }
 
-@media (max-width: 480px) {
+.swal2-popup {
+    font-size: 1.5rem !important;
+    font-family: sans-serif!important;
+    
+  }
+.swal2-html-container, .swal2-title{
+    color: #fff!important;
+  }
   
+@media (max-width: 480px) {
+   h2{
+       font-size: 2rem;
+   }
     .calc-container{
         width: 300px;
+        
+    }
+    .calc-keys{
+        
+        grid-gap: 12px;
+        padding: 20px;
+        
+    }
+   .calc-keys button{
+       height: 30px;
+       font-size: 2rem;
+       font-weight: 700;
+       box-shadow: 0 3px #8D959D;
+       line-height: 30px;
+   }
+   .calc-keys .delete{
+    box-shadow: 0 3px #91232c;
+   }
+   .calc-keys .clear{
+    box-shadow: 0 3px #6e191c;   
+    }
+   .calc-keys .equal-sign{
+    box-shadow: 0 3px #A82E10;
+    }
+   .calc-input{
+       padding:50px 20px 20px 20px;
+       font-size: 3.5rem;
+       margin-bottom: 10px;
+   }
+   .first-value{
+       font-size: 1.2rem;
+   }
+
+   .calc-keys .operator{
+       font-size: 3rem;
+   }
+   .calc-keys button:active, .calc-keys .clear:active, .calc-keys .equal-sign:active {
+    transform: translateY(2px);
     }
     
+   .calc-keys .delete{
+       font-size: 2rem;
+   }
+   .calc-keys .clear{
+       font-size: 1.2rem;
+   }
+   
   }

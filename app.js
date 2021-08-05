@@ -1,3 +1,4 @@
+
 const calcInput = document.querySelector('.calc-input')
 const calcKeys = document.querySelector('.calc-keys')
 const firstValueContainer = document.querySelector('.first-value')
@@ -7,12 +8,58 @@ let secondValue = null
 let operatorValue = null
 let waitingSecondValue = null
 updateValue()
+function equalPopup() {
+    Swal.fire({
+        icon: 'warning',
+        title: 'Sonuç Hesaplanamadı!',
+        text: 'Bir sayı veya operatör eksik girilmiştir! Lütfen kontrol ediniz.',
+        confirmButtonText: 'TAMAM',
+        confirmButtonColor: '#d00000',
+        position: 'center',
+        width: '500px',
+        heightAuto: false,
+        background: '#19191a',
+        iconColor: '#e85d04'
 
+    })
+}
+function decimalPopup() {
+    Swal.fire({
+        icon: 'warning',
+        title: 'Uyarı...',
+        text: 'Ondalıklı sayıya çevirmeden önce lütfen bir sayı giriniz!',
+        confirmButtonText: 'TAMAM',
+        confirmButtonColor: '#d00000',
+        position: 'center',
+        width: '500px',
+        heightAuto: false,
+        background: '#19191a',
+        iconColor: '#e85d04'
+
+    })
+}
+function deletePopup() {
+    Swal.fire({
+        icon: 'warning',
+        title: 'Silinecek değer bulunamadı!',
+        text: 'Öncelikle bir sayı girmeniz gerekmektedir.',
+        confirmButtonText: 'TAMAM',
+        confirmButtonColor: '#d00000',
+        position: 'center',
+        width: '500px',
+        heightAuto: false,
+        background: '#19191a',
+        iconColor: '#e85d04'
+
+    })
+}
 function updateValue() {
     calcInput.value = defaultValue
 }
 calcKeys.addEventListener('click', function (e) {
+
     if (e.target.matches('button')) {
+
         if (e.target.className == 'operator') {
             opInput(e.target.value)
             updateValue()
@@ -23,9 +70,14 @@ calcKeys.addEventListener('click', function (e) {
         } else if (e.target.classList.contains('clear')) {
             clearInput()
             updateValue()
-        } else if (e.target.classList.contains('equal-sign')) {
+        } else if (e.target.classList.contains('delete') || e.target.classList.contains('fas')) {
+            deleteInput()
+            updateValue()
+        }
+        else if (e.target.classList.contains('equal-sign')) {
             if (secondValue === null || operatorValue === null || waitingSecondValue === true) {
-                alert('Bir sayı veya operatör eksik girilmiştir! Lütfen kontrol ediniz.')
+                equalPopup()
+
             } else {
                 firstValue = secondValue
 
@@ -53,6 +105,19 @@ function clearInput() {
     waitingSecondValue = null
     firstValueContainer.innerText = '='
 }
+function deleteInput() {
+    if (defaultValue === 0) {
+        deletePopup()
+    } else if (defaultValue.length === 1) {
+        defaultValue = 0
+        firstValueContainer.innerText = `${secondValue === null ? defaultValue : secondValue} ${operatorValue === null ? '' : operatorValue} ${secondValue === null ? '' : defaultValue} =`
+
+    } else {
+        defaultValue = String(defaultValue).substring(0, defaultValue.length - 1)
+        firstValueContainer.innerText = `${secondValue === null ? defaultValue : secondValue} ${operatorValue === null ? '' : operatorValue} ${secondValue === null ? '' : defaultValue} =`
+    }
+
+}
 function numInput(number) {
     if (waitingSecondValue) {
         defaultValue = number
@@ -61,10 +126,12 @@ function numInput(number) {
         defaultValue = defaultValue === 0 ? number : defaultValue + number
     }
     firstValueContainer.innerText = `${secondValue === null ? defaultValue : secondValue} ${operatorValue === null ? '' : operatorValue} ${secondValue === null ? '' : defaultValue} =`
+    // console.log(`Default: ${defaultValue}, Second: ${secondValue}, Operator: ${operatorValue}, WaitingSecond: ${waitingSecondValue}`)
+
 }
 function decInput() {
     if (defaultValue === 0) {
-        alert('Ondalıklı sayıya çevirmeden önce lütfen bir sayı giriniz!')
+        decimalPopup()
     } else if (!defaultValue.includes(',')) {
         defaultValue += ','
     }
@@ -78,6 +145,7 @@ function opInput(operator) {
 
         firstValueContainer.innerText = `${secondValue} ${operator} =`
     }
+    clickEqual = false
     waitingSecondValue = true
     operatorValue = operator
     defaultValue = secondValue
