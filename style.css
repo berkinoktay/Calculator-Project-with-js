@@ -110,3 +110,11 @@ button:active{
     box-shadow: 0 1px #6e191c;
     transform: translateY(4px);
 }
+
+@media (max-width: 480px) {
+  
+    .calc-container{
+        width: 300px;
+    }
+    
+  }
