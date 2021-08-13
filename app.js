@@ -1,4 +1,6 @@
-
+const themes = document.querySelector('.toggle-bar')
+const themesName = document.querySelector('.switch h3 span')
+const resultItems = document.querySelector('.result-items')
 const calcInput = document.querySelector('.calc-input')
 const calcKeys = document.querySelector('.calc-keys')
 const firstValueContainer = document.querySelector('.first-value')
@@ -7,7 +9,32 @@ let defaultValue = 0
 let secondValue = null
 let operatorValue = null
 let waitingSecondValue = null
+themesName.innerText = "Default"
 updateValue()
+
+
+themes.addEventListener('click', function (e) {
+    if (e.target.classList.contains('toggle_option')) {
+
+        if (e.target.id === "one") {
+            document.documentElement.setAttribute('data-theme', 'default')
+            themesName.innerText = "Default"
+        } else if (e.target.id === "two") {
+            document.documentElement.setAttribute('data-theme', 'dark')
+            themesName.innerText = "Dark"
+        } else if (e.target.id === "three") {
+            document.documentElement.setAttribute('data-theme', 'neon')
+            themesName.innerText = "Neon"
+
+        } else {
+            document.documentElement.setAttribute('data-theme', 'vintage')
+            themesName.innerText = "Vintage"
+        }
+
+    }
+})
+
+
 function equalPopup() {
     Swal.fire({
         icon: 'warning',
@@ -56,6 +83,8 @@ function deletePopup() {
 function updateValue() {
     calcInput.value = defaultValue
 }
+
+
 calcKeys.addEventListener('click', function (e) {
 
     if (e.target.matches('button')) {
@@ -88,6 +117,12 @@ calcKeys.addEventListener('click', function (e) {
                 // defaultValue = String(defaultValue).includes(',') ? defaultValue.replace(/,/g, '.') : defaultValue
                 firstValueContainer.innerText = `${firstValue} ${operatorValue === null ? '' : operatorValue} ${defaultValue} =`
                 // console.log(`SONRA Default: ${defaultValue}, Second: ${secondValue}, Operator: ${operatorValue}, WaitingSecond: ${waitingSecondValue}`)
+
+                let li = document.createElement('li')
+                li.innerText = `${firstValue} ${operatorValue === null ? '' : operatorValue} ${defaultValue} = ${result}`
+                resultItems.appendChild(li)
+
+
             }
 
         } else {
@@ -185,5 +220,5 @@ function calculate(second, defaultVal, operator) {
             return parseFloat(convertDecDefault)
 
     }
-
 }
+

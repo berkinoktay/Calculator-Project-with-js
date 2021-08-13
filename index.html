@@ -4,14 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator v2</title>
+    <title>Calculator v3</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    
+    <div class="main-container">
     <div class="calc-container">
-        <h2>Calculator v2</h2>
+        <div class="calc-header">
+            <h2>Calc v3</h2>
+            <div class="switch">
+                <h3>Themes:<span></span></h3>
+                
+                <div class="toggle-bar">
+                  <input type="radio" checked class="toggle_option" id="one" name="toggle_option" value="Default"/>
+                  <input type="radio" class="toggle_option" id="two" name="toggle_option" value="Dark" />
+                  <input type="radio" class="toggle_option" id="three" name="toggle_option" value="Neon"/>
+                  <input type="radio" class="toggle_option" id="four" name="toggle_option" value="Vintage"/>
+                  <label for="one"><p>1</p></label>
+                  <label for="two"><p>2</p></label>
+                  <label for="three"><p>3</p></label>
+                  <label for="four"><p>4</p></label>
+                  <div class="custom-radio"></div>
+                </div>
+            </div>
+        </div>
+        
         <div class="input-container">
             <div class="first-value"> = </div>
             <input type="text" class="calc-input" value="0" disabled>
@@ -45,7 +64,14 @@
 
         </div>
     </div>
-
+    <div class="results">
+        <h2>Results</h2>
+        <ul class="result-items">
+            
+        </ul>
+    
+    </div>
+</div>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="app.js"></script>
 </body>

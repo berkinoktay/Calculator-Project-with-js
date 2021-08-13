@@ -1,17 +1,106 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap');
+:root{
+    --textColor:#fff;
+    --buttonColor:#0a0a0a;
+    --inputColor:#fff;
+    --firstValue:#ccc;
+    --bodyBg:#3D5A80;
+    --inputBg:#293241;
+    --calcKeys:#293E56;
+    --button:#E9ECEF;
+    --operators:#375274;
+    --clear:#9b2226;
+    --delete:#c93541;
+    --equal:#EA481F;
+    --buttonBox:#8D959D;
+    --clearBox:#6e191c;
+    --deleteBox:#91232c;
+    --equalBox:#A82E10;
+    --buttonHover:#c3c9ce;
+    --clearHover:#9e3333;
+    --deleteHover:#bb333e;
+    --equalHover:#CD3813;
+}
+[data-theme="dark"]{
+    --textColor:#F3F6F7;
+    --buttonColor:#0a0a0a;
+    --inputColor:#0a0a0a;
+    --firstValue:#1b1b20;
+    --bodyBg:#07070e;
+    --inputBg:#E7EDEF;
+    --calcKeys:#C1D0D7;
+    --button:#F3F6F7;
+    --operators:#002E3D;
+    --clear:#25252c;
+    --delete:#25252c;
+    --equal:#25252c;
+    --buttonBox:#8D959D;
+    --clearBox:#0a0a0a;
+    --deleteBox:#0a0a0a;
+    --equalBox:#0a0a0a;
+    --buttonHover:#c3c9ce;
+    --clearHover:#1b1b20;
+    --deleteHover:#1b1b20;
+    --equalHover:#1b1b20; 
+}
+[data-theme="neon"]{
+    --textColor:#FFFFFC;
+    --buttonColor:#EBFFFF;
+    --inputColor:#EBFFFF;
+    --firstValue:#bfcfcf;
+    --bodyBg:#312244;
+    --inputBg:#006466;
+    --calcKeys:#00A0A3;
+    --button:#FFADAD;
+    --operators:#0B525B;
+    --clear:#850885;
+    --delete:#850885;
+    --equal:#693569;
+    --buttonBox:#c28383;
+    --clearBox:#0A1B1F;
+    --deleteBox:#0A1B1F;
+    --equalBox:#0A1B1F;
+    --buttonHover:#df9a9a;
+    --clearHover:#610761;
+    --deleteHover:#610761;
+    --equalHover:#552a55; 
+}
+[data-theme="vintage"]{
+    --textColor:#FFE8D6;
+    --buttonColor:#0a0a0a;
+    --inputColor:#FFE8D6;
+    --firstValue:#fceee5;
+    --bodyBg:#6B705C;
+    --inputBg:#B7B7A4;
+    --calcKeys:#A5A58D;
+    --button:#FFE8D6;
+    --operators:#002E3D;
+    --clear:#B98B73;
+    --delete:#B98B73;
+    --equal:#B98B73;
+    --buttonBox:#DDBEA9;
+    --clearBox:#A87E69;
+    --deleteBox:#A87E69;
+    --equalBox:#A87E69;
+    --buttonHover:#EED3C0;
+    --clearHover:#99735F;
+    --deleteHover:#99735F;
+    --equalHover:#99735F; 
+}
 *{
     margin:0;
     padding:0;
     box-sizing: border-box;
     outline: 0;
     border:0;
+    list-style: none;
 }
 html{
     font-size: 10px;
 }
 
 body{
-    background: #3D5A80;
+    background:var(--bodyBg);
     font-size: 1.2rem;
     display: flex;
     justify-content: center;
@@ -21,9 +110,93 @@ body{
     font-family: 'Roboto Mono', monospace;
     font-variant-numeric: slashed-zero;
 }
-h2{
+.main-container{
+    display: flex;
+    align-items: center;
+    max-height: 540px;
+}
+.calc-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
-    color: #fff;
+}
+/* Switch Buttons */
+.calc-header .switch{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.calc-header .switch h3{
+    margin-bottom:10px;
+    color: var(--textColor);
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    font-weight: 900;
+}
+.calc-header .switch h3 span{
+   font-weight: 400;
+   font-size: 1.3rem;
+}
+.calc-header .toggle-bar{
+    position: relative;
+    background: rgba(255,255,255,.1);
+    overflow: hidden;
+    border-radius: 50px;
+    height: 30px;
+    width: 90px;
+    display:flex;
+    justify-content:space-between;
+    
+  }
+.calc-header .toggle-bar input{
+    display:none;
+  }
+.calc-header .toggle-bar label{
+    font-size: 16px;
+    color: rgba(255,255,255,.9);
+    z-index: 0;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align:center;
+    line-height:30px;
+  }
+.calc-header .custom-radio{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+   top:50%;
+    transform:translateY(-50%);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all .4s ease;
+  }
+  #one:checked ~ .custom-radio{
+    background: #ff3604;
+    left: 2px;
+  }
+  #two:checked ~ .custom-radio{
+    background: #ff3604;
+    left: 23px;
+  }
+  #three:checked ~ .custom-radio{
+    background: #ff3604;
+    left: 46px;
+  }
+  #four:checked ~ .custom-radio{
+    background: #ff3604;
+    left: 68px;
+  }
+  /* Switch Buttons END*/
+  
+.calc-header h2{
+    align-self: flex-end;
+    color: var(--textColor);
     font-size: 3rem;
 }
 .calc-container{
@@ -39,15 +212,15 @@ h2{
 position: absolute;
 top: 0;
 right: 0;
-color: #ccc;
+color: var(--firstValue);
 padding: 1rem;
 font-size: 1.6rem;
 }
 .calc-input{
     width: 100%;
     height: 70px;
-    background: #293241;
-    color: #fff;
+    background: var(--inputBg);
+    color: var(--inputColor);
     font-size: 5rem;
     text-align: right;
     padding: 60px 20px 30px 20px;
@@ -55,7 +228,7 @@ font-size: 1.6rem;
     border-radius: 10px;
 }
 .calc-keys{
-    background: #293E56;
+    background: var(--calcKeys);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 15px;
@@ -64,51 +237,51 @@ font-size: 1.6rem;
 }
 .calc-keys button{
     height: 50px;
-    background: #E9ECEF;
+    background: var(--button);
     border-radius: 3px;
-    color: #0a0a0a;
+    color: var(--buttonColor);
     font-size: 3.5rem;
     cursor: pointer;
-    box-shadow: 0 5px #8D959D;
+    box-shadow: 0 5px var(--buttonBox);
     
 }
 .calc-keys button:hover{
-background: #c3c9ce;
+background: var(--buttonHover);
 transition: all 0.1s ease-in;
 }
 .calc-keys button:active{
-    box-shadow: 0 1px #adb5bd;
+    box-shadow: 0 1px var(--buttonBox);
     transform: translateY(4px);
 }
 .calc-keys .operator{
-    color: #375274;
+    color: var(--operators);
     font-size: 4rem;
 }
 .calc-keys .equal-sign{
     grid-area: 3/4/6/5;
     height: 100%;
-    background: #EA481F;
-    box-shadow: 0 5px #A82E10;
-    color: #fff;
+    background: var(--equal);
+    box-shadow: 0 5px var(--equalBox);
+    color: var(--textColor);
 }
 .calc-keys .equal-sign:hover{
-    background: #CD3813;
+    background: var(--equalHover);
     transition: all 0.1s ease-in;
 }
 .calc-keys .equal-sign:active{
-    box-shadow: 0 1px #A82E10;
+    box-shadow: 0 1px var(--equalBox);
     transform: translateY(4px);
 }
 .calc-keys .clear{
-    background: #9b2226;
-    color: #fff;
-    box-shadow: 0 5px #6e191c;
+    background: var(--clear);
+    color: var(--textColor);
+    box-shadow: 0 5px var(--clearBox);
     font-size: 2rem;
 }
 .calc-keys .delete{
-    background: #ce3340;
-    color: #fff;
-    box-shadow: 0 5px #91232c;
+    background: var(--delete);
+    color: var(--textColor);
+    box-shadow: 0 5px var(--deleteBox);
     font-size: 2.5rem;
     position: relative;
 }
@@ -118,26 +291,64 @@ transition: all 0.1s ease-in;
     font-weight: 900;
 }
 .calc-keys .delete:hover{
-    background: #b92f3a;
+    background: var(--deleteHover);
     transition: all 0.1s ease-in;
 }
 .calc-keys .clear:hover{
-    background: #9e3333;
+    background: var(--clearHover);
     transition: all 0.1s ease-in;
 }
 .calc-keys .clear:active{
-    box-shadow: 0 1px #6e191c;
+    box-shadow: 0 1px var(--clearBox);
     transform: translateY(4px);
 }
+.results{
+    width: 450px;
+    height: 100%;
+    background: var(--calcKeys);
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 50px;
+}
+.results h2{
+    color:var(--inputColor);
+    font-size:3rem;
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid var(--inputColor);
+}
 
+.results ul{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    overflow-y: auto;
+    height: calc(100% - 60px);
+
+}
+.results ul li{
+   margin-bottom: 15px;
+    color: var(--firstValue);
+    font-size: 1.5rem;
+    padding: 5px;
+    border-bottom: 1px dashed var(--firstValue);
+    width: 90%;
+    
+}
+.results ul li:last-child{
+    margin-bottom: 0px;
+    
+ }
 .swal2-popup {
     font-size: 1.5rem !important;
     font-family: sans-serif!important;
     
   }
 .swal2-html-container, .swal2-title{
-    color: #fff!important;
+    color: var(--textColor)!important;
   }
+
+
   
 @media (max-width: 480px) {
    h2{
@@ -157,17 +368,17 @@ transition: all 0.1s ease-in;
        height: 30px;
        font-size: 2rem;
        font-weight: 700;
-       box-shadow: 0 3px #8D959D;
+       box-shadow: 0 3px var(--buttonBox);
        line-height: 30px;
    }
    .calc-keys .delete{
-    box-shadow: 0 3px #91232c;
+    box-shadow: 0 3px var(--deleteBox);
    }
    .calc-keys .clear{
-    box-shadow: 0 3px #6e191c;   
+    box-shadow: 0 3px var(--clearBox);
     }
    .calc-keys .equal-sign{
-    box-shadow: 0 3px #A82E10;
+    box-shadow: 0 3px var(--equalBox);
     }
    .calc-input{
        padding:50px 20px 20px 20px;
@@ -191,5 +402,16 @@ transition: all 0.1s ease-in;
    .calc-keys .clear{
        font-size: 1.2rem;
    }
+   .results{
+       width: 300px;
+   }
    
+  }
+  @media (max-width: 980px) {
+    .main-container{
+        flex-direction: column;
+    }
+    .results{
+        margin: 20px 0 0px 0;
+    }
   }
